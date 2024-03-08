@@ -66,12 +66,12 @@ for i in range(32, 127):
     used.append(int(cipher_char))
     
 #uncomment to print out encryption cipher
-'''
+
 cipher_key = ""
 for key, value in cipher_encrypt.items():
     cipher_key = cipher_key + key + "->" + value + " | "  
-print(cipher_key)
-'''
+print("\nCipher Key: \n",cipher_key)
+
 
 
 encrypted_msg = str(int(c_e)) + "~~\n\n"
