@@ -1,2 +1,1 @@
-class MyClass:
-    def __init__
+#Could implement RSA class here

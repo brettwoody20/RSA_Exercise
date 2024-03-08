@@ -1,0 +1,5 @@
+- break down functionality
+- turn RSA into a class that you can message
+    - could also implement a server of users with RSA keys
+    - make primes static
+- make files that are stored
