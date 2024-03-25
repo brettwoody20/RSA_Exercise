@@ -2,15 +2,6 @@ from mod import Mod
 from math import gcd
 import random
 
-
-'''
-x=5
-p=23
-
-y = pow(x, -1, p)
-print(y)
-'''
-
 primes = [23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 
 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113,
 127, 131, 137, 139, 149, 151, 157, 163, 167, 173,
@@ -23,10 +14,12 @@ primes = [23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
 547, 557, 563, 569, 571, 577, 587, 593, 599]
 
 
+
 #CREATE
 
 #generate p, q, N, e
-e = 601 
+e = 65537
+
 
 p = primes[random.randint(0, len(primes)-1)]
 q = primes[random.randint(0, len(primes)-1)]
@@ -38,6 +31,8 @@ while p == q or gcd(e,totient) != 1:
     totient = (p-1)*(q-1)
     
 N = p * q
+
+print("Generated Public RSA Key: (", N,", ", e,")")
 
 #ENCRYPT
 
@@ -67,10 +62,10 @@ for i in range(32, 127):
     
 #uncomment to print out encryption cipher
 
-cipher_key = ""
-for key, value in cipher_encrypt.items():
-    cipher_key = cipher_key + key + "->" + value + " | "  
-print("\nCipher Key: \n",cipher_key)
+#cipher_key = ""
+#for key, value in cipher_encrypt.items():
+#    cipher_key = cipher_key + key + "->" + value + " | "  
+#print("\nCipher Key: \n",cipher_key)
 
 
 
