@@ -49,14 +49,8 @@ class RSA:
         #for each char
         for i in range(32, 127):
             cipher_char = Mod((i*a+b),95)
-            check = 0
             while int(cipher_char) in used:
-                #print(int(cipher_char), ": Collision")
                 cipher_char += 1
-                check += 1
-                if check > 200:
-                    print("Timed out: ", int(cipher_char), " in \n", sorted(used))
-                    sys.exit()
             cipher_encrypt.update({chr(i): chr(int(cipher_char)+32)})
             used.append(int(cipher_char))
             
@@ -68,5 +62,34 @@ class RSA:
     
     
     #function to decrypt a message using RSA (int c, string encrypted) -> (string plaintext)
+    def decryptMessage(self, encrypted):
+        #retrieve c from msg
+        c = int(encrypted.split("$E~N~D$\n")[0])
+
+        #compute m
+        d = pow(RSA.__e, -1, (self.__p-1)*(self.__q-1))
+        m = int(Mod(c**d, self.__N))
+
+
+        #create decryption cipher based on m using a hash function
+        decipher = {}
+        used = []
+
+        a_decrypt = m % 19
+        b_decrypt = m % 41
+        for i in range(32, 127):
+            cipher_char2 = Mod((i * a_decrypt + b_decrypt),95)
+            while int(cipher_char2) in used:
+                #print(int(cipher_char), ": Collision")
+                cipher_char2 += 1
+            decipher.update({chr(int(cipher_char2)+32): chr(i)})
+            used.append(int(cipher_char2))
+            
+        decrypted = ""
+
+        for character in encrypted.split("$E~N~D$\n")[1]:
+            decrypted += decipher.get(character)
+            
+        return decrypted
     
 #NOTE: if RSA would be a class stored on a server, then they would not store the p, q values- those would be stored on the client's side 
