@@ -1,5 +1,7 @@
 - break down functionality
 - turn RSA into a class that you can message
     - could also implement a server of users with RSA keys
-    - make primes static
+    - make primes static (chosen upon instantiation and then kept)
 - make files that are stored
+    - encrypted messages can be stored and then selected to be decrypted
+    - would involve putting RSA key at top of the message and store decryption variable 
